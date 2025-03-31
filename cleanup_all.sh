@@ -1,0 +1,1 @@
+find . -name "a.out" -o -name "work" -o -name "transcript" -o -name "*.vcd" -o -name "*.wlf" -o -name "*.log" | xargs rm -rf
