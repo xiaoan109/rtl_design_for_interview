@@ -2,12 +2,12 @@ module sp_arbiter #(
     parameter NUM = 4,
     parameter LSB_HIGH = 1
 ) (
-    input wire [NUM-1:0] req,
-    output wire [NUM-1:0] gnt
+    input wire [NUM-1:0] req_i,
+    output wire [NUM-1:0] gnt_o
 );
 wire [NUM-1:0] tmp_w;
-assign tmp_w = LSB_HIGH ? {tmp_w[NUM-2:0] | req[NUM-2:0], 1'b0} : {1'b0, tmp_w[NUM-1:1] | req[NUM-1:1]};
-assign gnt = ~tmp_w & req;	
+assign tmp_w = LSB_HIGH ? {tmp_w[NUM-2:0] | req_i[NUM-2:0], 1'b0} : {1'b0, tmp_w[NUM-1:1] | req_i[NUM-1:1]};
+assign gnt_o = ~tmp_w & req_i;	
 
 // non-parameterized always + case
 // ex.
