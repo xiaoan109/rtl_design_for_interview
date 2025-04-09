@@ -15,7 +15,7 @@ module register_skid_buffer #(
 	reg ready_r;
 	// skid buffer
 	reg buffer_valid_r;
-	reg [DW-1:0] buffer_data_w;
+	reg [DW-1:0] buffer_data_r;
 	
 	// cut ready
 	always @(posedge clk_i or negedge rst_ni) begin
@@ -34,12 +34,12 @@ module register_skid_buffer #(
 	
 	always @(posedge clk_i or negedge rst_ni) begin
 		if(~rst_ni) begin
-			buffer_data_w <= 0;
+			buffer_data_r <= 0;
 		end else begin
 			if(clear_i) begin
-				buffer_data_w <= 0;
+				buffer_data_r <= 0;
 			end else if(!ready_i && valid_i && ready_o) begin
-				buffer_data_w <= data_i;
+				buffer_data_r <= data_i;
 			end
 		end
 	end
@@ -62,6 +62,6 @@ module register_skid_buffer #(
 	
 	assign ready_o = ready_r;
 	assign valid_o = ready_o ? valid_i : buffer_valid_r;
-	assign data_o = ready_o ? data_i : buffer_data_w;
+	assign data_o = ready_o ? data_i : buffer_data_r;
 
 endmodule
