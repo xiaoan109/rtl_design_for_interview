@@ -30,7 +30,7 @@ module onehot_det #(
       integer i;
       always @(*) begin
         parity[0] = data_i[0];
-        for (i = 0; i < DW; i = i + 1) begin
+        for (i = 1; i < DW; i = i + 1) begin
           parity[i] = parity[i-1] ^ data_i[i];
         end
       end

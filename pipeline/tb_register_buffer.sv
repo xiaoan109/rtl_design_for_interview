@@ -53,4 +53,9 @@ module tb_register_buffer();
 		repeat(10) @(posedge clk_i);
 		$finish();
 	end
+	
+	initial begin
+		$dumpfile("dump.vcd");
+		$dumpvars();
+	end
 endmodule
