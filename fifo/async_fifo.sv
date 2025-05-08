@@ -96,8 +96,8 @@ module async_fifo#(
         end
     end
 
-    assign empty_o = (write_ptr_g_w == read_ptr_g_r1);
-    assign full_o = (read_ptr_g_w != write_ptr_g_r1) && (read_ptr_g_w[ADDR_DEPTH-1:0] == write_ptr_g_r1[ADDR_DEPTH-1:0]);
+    assign empty_o = (write_ptr_g_r1 == read_ptr_g_w);
+    assign full_o = (read_ptr_g_r1 != write_ptr_g_w) && (read_ptr_g_r1[ADDR_DEPTH-1:0] == write_ptr_g_w[ADDR_DEPTH-1:0]);
     assign data_o = rd_data_r;
 
 endmodule
