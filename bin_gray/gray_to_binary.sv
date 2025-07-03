@@ -8,7 +8,7 @@ module gray_to_binary #(
 genvar i;
 generate
   for(i = 0; i < N; i = i + 1) begin
-    assign z[i] = ^A[N-1:i];
+    assign Z[i] = ^A[N-1:i];
   end
 endgenerate
 
